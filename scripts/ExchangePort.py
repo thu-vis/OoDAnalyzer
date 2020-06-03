@@ -14,8 +14,6 @@ class ExchangePort(object):
             self.data = None
         else:
             self.data = Data(dataname)
-            self.grid_layout = GridLayout(dataname)
-            self.ensemble = Ensemble(dataname)
             self.sampler = Sampler(dataname)
 
     def reset_dataname(self, dataname):
