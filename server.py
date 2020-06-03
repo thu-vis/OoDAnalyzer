@@ -70,7 +70,9 @@ def app_get_label():
 def app_get_image():
     id = request.args["filename"].split(".")[0]
     id = int(id)
-    if id < 0:
+    # if id < 0:
+    # TODO
+    if 1:
         return jsonify({
             "d": 1
         })
@@ -81,7 +83,9 @@ def app_get_image():
 def app_get_thumbnail():
     id = request.args["filename"].split(".")[0]
     id = int(id)
-    if id < 0:
+    # if id < 0:
+    # TODO
+    if 1:
         return jsonify({
             "d": 1
         })
@@ -92,7 +96,9 @@ def app_get_thumbnail():
 def app_get_saliency_map():
     id = request.args["filename"].split(".")[0]
     id = int(id)
-    if id < 0:
+    # if id < 0:
+    # TODO
+    if 1:
         return jsonify({
             "d": 1
         })

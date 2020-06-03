@@ -2,8 +2,6 @@ import numpy as np
 import os
 from time import time
 
-from scripts.Ensemble import Ensemble
-from scripts.Grid import GridLayout
 from scripts.Sampler import Sampler
 from scripts.utils.data_utils import Data
 from scripts.utils.config_utils import config
@@ -25,10 +23,6 @@ class ExchangePort(object):
         t = time()
         self.data = Data(dataname)
         print("data time:", time() - t)
-        self.grid_layout = GridLayout(dataname)
-        print("grid layout time:", time() - t)
-        self.ensemble = Ensemble(dataname)
-        print("ensemble time:", time() - t)
         self.sampler = Sampler(dataname)
         print("sampler time:", time() - t)
 
@@ -151,7 +145,9 @@ class ExchangePort(object):
         return mat
 
     def get_prediction(self):
-        train_pred_y, test_pred_y = self.grid_layout.get_prediction_results()
+        # train_pred_y, test_pred_y = self.grid_layout.get_prediction_results()
+        train_pred_y = self.data.pred_train
+        test_pred_y = self.data.pred_test
         mat = {
             "train_pred_y": train_pred_y.tolist(),
             "test_pred_y": test_pred_y.tolist()
@@ -159,7 +155,7 @@ class ExchangePort(object):
         return mat
 
     def get_entropy(self):
-        train_entropy, test_entropy = self.ensemble.get_entropy()
+        train_entropy, test_entropy = self.data.get_entropy()
         train_entropy = train_entropy * 0
         mat = {
             "train_entropy": train_entropy.tolist(),

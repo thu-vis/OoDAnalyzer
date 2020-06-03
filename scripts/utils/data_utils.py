@@ -164,6 +164,13 @@ class Data(object):
         acc = (self.pred_train == self.y_train).sum() / len(self.pred_train)
         return acc
 
+    def get_entropy(self):
+        all_entropy = self.entropy
+        train_entropy = all_entropy[np.array(self.train_idx)]
+        test_entropy = all_entropy[np.array(self.test_idx)]
+        # test_entropy /= test_entropy.max()
+        return train_entropy, test_entropy
+
     def get_manifest(self):
         train_acc = self.get_acc()
         manifest = {
