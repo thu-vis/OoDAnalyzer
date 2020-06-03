@@ -3,11 +3,9 @@ import os
 import sys
 import ctypes
 import math
-import tensorflow as tf
 from time import time
 
 from scipy.sparse import csr_matrix
-from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.svm import SVC
@@ -20,8 +18,6 @@ from sklearn.metrics import classification_report
 from scipy.spatial.distance import cdist
 from PIL import Image
 from lapjv import lapjv
-from lap import lapjv as lap_jv
-from lap import lapmod as lap_mod
 import multiprocessing
 from anytree import Node
 
