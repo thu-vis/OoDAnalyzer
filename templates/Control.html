@@ -1,0 +1,172 @@
+{% block control %}
+
+
+<div class="self-column" id="self-column-1">
+    <div class="block-container" id="block-1-1">
+        {#header#}
+{#        <div class="my-panel" @*style="display: none" *@>#}
+{#            <div>#}
+{#                <span class="my-panel-heading"> Control </span>#}
+{#                <!--<span class="save-button header-button" onclick="saveSVG('worker-svg')">Save</span>-->#}
+{#            </div>#}
+{#            <hr class="my-panel-seg"/>#}
+{#        </div>#}
+{#        <h5>Control Panel</h5>#}
+
+        {# navigation #}
+        <div>
+            <span class="first-class-title">DATA</span>
+        </div>
+        <div class="divider"></div>
+        <div class="row" id="side-nav">
+            <ul class="collapsible" id="cp-container" data-collapsible="expandable">
+                <li>
+                      <div class="collapsible-header">
+                          <span class="second-font">Datasets</span>
+                      </div>
+                      <div class="collapsible-body" id="dataset">
+                      <div class="input-field col s12" style="width: 50%; float: left;">
+                        <select id="dataset-select">
+                          <option value="animals">Animals</option>
+                          <option value="animals">Animals-leopard</option>
+{#                            <option value="rea">REA</option>#}
+                          
+                        </select>
+                      </div>
+                      <div class="sub-body-text-container">
+                          <div>
+                          <span># training data:</span>
+                          <span id="train-num"></span>
+                          </div>
+                          <div>
+                          <span># test data:</span>
+                          <span id="test-num"></span>
+                          </div>
+                      </div>
+                      </div>
+                </li>
+
+                <div class="divider"></div>
+
+                <li>
+                      <div class="collapsible-header">
+                          <span class="second-font">Display</span>
+                      </div>
+                      <div class="collapsible-body" id="data">
+                              <label style="float: left;">
+                                <input class="display" type="radio" id="train"
+                                       onclick="display_selection('train')" />
+                                <span class="third-font" style="float: left;">Training</span>
+                                  <div class="third-font icon-display">
+                                      <img src="/static/img/training_test_icon.png" style="height:24px; width:24px; clip-path: circle(40% at 50% 50%);">
+                                </div>
+                              </label>
+                              <label style="margin-left: 5px;">
+                                <input class="display" type="radio" id="test"
+                                       onclick="display_selection('test')" checked />
+                                <span class="third-font" style="float: left;  margin-left: 15%">Test</span>
+                                  <div class="third-font icon-display">
+                                    <img src="/static/img/training_test_icon.png" style="height:22px; width:22px; margin-left: 6px">
+                                </div>
+                              </label>
+                      </div>
+                </li>
+                <div class="divider"></div>
+
+                <li>
+                      <div class="collapsible-header">
+{#                          <i class="mdi-navigation-chevron-right"></i>#}
+                          <span class="second-font">Encoding</span>
+                      </div>
+                      <div class="collapsible-body" id="Lens">
+                          <p>
+{#                              <label style="float: left;">#}
+{#                                <input id="boundary-switch" type="checkbox" class="filled-in"#}
+{#                                       onclick="switch_boundary()"/>#}
+{#                                <span class="third-font">Decision boundary</span>#}
+{#                              </label>#}
+                              <label {# style="padding-left: 10px" #}>
+                                <input id="images-switch" type="checkbox" class="filled-in" checked
+                                       onclick="switch_images()"/>
+                                <span class="third-font">Images</span>
+                              </label>
+                            </p>
+                            <p>
+                              <label>
+                                <input name="group-filter" type="checkbox" class="filled-in" checked
+                                onclick="switch_entropy()" id="entropy-switch"/>
+                                <span class="third-font" style="float: left;">OoD Score</span>
+                                  <div class="icon-slider">
+                                        <div id="entropy-slider"></div>
+                                  </div>
+                              </label>
+                            </p>
+                      </div>
+                </li>
+
+                <div class="divider"></div>
+                <li>
+                      <div class="collapsible-header">
+                          <span class="second-font">Comparison</span>
+                      </div>
+                      <div class="collapsible-body" id="data">
+                          <label style="float: left;">
+                            <input class="comparison" type="radio" id="all"
+                                   onclick="display_selection('all')" />
+                            <span class="third-font" style="float: left;">Superposition</span>
+                            <div class="third-font icon-group">
+                                <img src="/static/img/superposition_icon.png" style="height:22px; margin-left: 6px">
+{#                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="margin-left: 2.5px">#}
+{#                                    <path d="M0 0h24v24H0z" fill="none"/><path d="M3 5H1v16c0 1.1.9 2 2 2h16v-2H3V5zm18-4H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 16H7V3h14v14z"/>#}
+{#                                </svg>#}
+                            </div>
+                          </label>
+                          <label>
+                            <input class="comparison" type="radio" id="juxtaposition"
+                                   onclick="display_selection('juxtaposition')" />
+                            <span class="third-font" style="float: left; margin-left: 5%;">Juxtaposition</span>
+                            <div class="third-font icon-group">
+                                <img src="/static/img/juxtaposition_icon.png" style="height:22px; margin-left: 6px">
+{#                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">#}
+{#                                    <path d="M0 0h24v24H0z" fill="none"/>#}
+{#                                    <path d="M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H6V6h12v12z"/>#}
+{#                                </svg>#}
+{#                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="margin-left: -10px">#}
+{#                                    <path d="M0 0h24v24H0z" fill="none"/>#}
+{#                                    <path d="M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H6V6h12v12z"/>#}
+{#                                </svg>#}
+                            </div>
+                          </label>
+                      </div>
+                </li>
+                <div class="divider"></div>
+                <li>
+                    <div class="collapsible-header">
+                      <span class="second-font">Categories</span>
+                    </div>
+                    <div class="collapsible-body" id="data">
+                        <div id="legend">
+                            <svg id="legend-group" height="0"></svg>
+                            <div>
+                                <a id="select-classes" class="waves-effect waves-light btn-small" style="float: left;">select classes</a>
+                                <a id="reload-layout" class="waves-effect waves-light btn-small grey">reload</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="block-container">
+        <div>
+            <span class="first-class-title">NAVIGATION</span>
+        </div>
+        <div class="divider"></div>
+        <div class="block-container" id="block-1-2"></div>
+
+    </div>
+</div>
+
+{% endblock %}

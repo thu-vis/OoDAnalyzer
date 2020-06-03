@@ -1,0 +1,9 @@
+Python 3.x
+
+package: 
+	numpy
+	scipy
+	sklearn
+	matplotlib   #在windows下，以上四个包建议使用whl安装
+	flask
+	pillow		#以上两个包可以直接使用pip install安装

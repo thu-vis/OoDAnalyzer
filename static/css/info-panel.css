@@ -1,0 +1,144 @@
+.info-text{
+    padding: 2px 1rem;
+    font-size: 1.1rem;
+    cursor: None;
+}
+
+.first-class-title{
+    /*font-size: 1.25rem;*/
+    font-size: 15px;
+    padding-left: 10px;
+    display: inline-block;
+}
+
+.second-class-title{
+    /*font-size: 1.3rem;*/
+    font-size: 15px;
+    padding-left: 15px;
+    padding-top: 5px;
+    display: inline-block;
+}
+
+#info-panel {
+    border-left:1px solid #ddd;
+    background: #fff;
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    height: 100%;
+    width: 23%;
+    min-width: 250px;
+}
+
+.panel-header{
+    margin-left: 5%;
+    margin-top: 2%;
+}
+
+#neighbour-num-slider {
+    width: 80%;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+#cp-container{
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    box-shadow: 0 0 0 0;
+    margin: 0.5rem 0 1rem 0;
+}
+
+#side-nav{
+    margin-left: 5px;
+    max-width: 95%;
+}
+
+#top-nav{
+    width: 90%;
+    margin: 0 5rem;
+}
+
+.collapsible-header{
+    border-bottom: 1px !important;
+    min-height: 0px !important;
+    line-height: 1rem !important;
+}
+
+.collapsible-body{
+    border-bottom: 0px !important;
+    padding: 0 0rem !important;
+    padding-bottom: 1rem !important;
+    padding-top: 1rem !important;
+}
+
+#data{
+    margin-left: 0.5rem;
+}
+
+#lens{
+    margin-left: 0.5rem;
+}
+
+.second-font{
+    font-size: 13px;
+    border-bottom: 1px solid #ddd
+}
+
+.third-font{
+    font-size: 12px;
+    color: #333333;
+    padding-left: 25px !important;
+}
+
+.padding-bottom{
+    padding-bottom: 5px;
+}
+.sub-body-text-container{
+    padding: 2px 1rem;
+    font-size: 15px;
+}
+
+.cell-container{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+.second-indent{
+    margin-left: 6px;
+}
+
+.icon-group {
+    margin-left: -20px;
+    float: left;
+}
+
+.icon-display{
+    margin-left: 60px;
+}
+
+.icon-slider{
+    margin-left: 150px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.text-black {
+    -webkit-text-fill-color: black;
+}
+
+.noUi-connect {
+    height: 5px;
+}
+
+#self-column-1 span{
+    /*font-size: 0.7rem;*/
+    font-size: 15px;
+}
+
+.divider {
+    clear: both;
+}

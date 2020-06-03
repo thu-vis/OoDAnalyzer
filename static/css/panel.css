@@ -1,0 +1,13 @@
+.collapsible-header{
+    padding-top: 0.5rem;
+    padding-bottom: 0.2rem;
+}
+
+.input-field{
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+}
+
+body {
+    -webkit-user-select: none;
+}
