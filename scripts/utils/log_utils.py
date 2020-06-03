@@ -5,6 +5,7 @@ import ctypes
 import logging
 
 from .config_utils import config
+from .helper_utils import check_dir
 
 FOREGROUND_WHITE = 0x0007
 FOREGROUND_BLUE = 0x01  # text color contains blue.
@@ -72,6 +73,7 @@ class Logger:
 
 
 # logger = Logger(os.path.join(config.log_root, strftime() + ".log"), logging.INFO, logging.INFO)
+check_dir(config.log_root)
 logger = Logger(os.path.join(config.log_root, strftime() + ".log"), logging.DEBUG, logging.DEBUG)
 
 #################
