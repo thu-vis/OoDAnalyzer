@@ -102,7 +102,6 @@ class Sampler(object):
         self.confidence = np.max(self.data.pred_prob, axis=1)
         self.X_train, self.y_train, self.X_valid, self.y_valid, self.X_test, self.y_test = self.data.get_data("all")
         self.train_idx = self.data.train_idx
-        self.valid_idx = self.data.valid_idx
         self.test_idx = self.data.test_idx
         self.pred_y_train = self.data.prediction[np.array(self.train_idx)]
         self.pred_y_test = self.data.prediction[np.array(self.test_idx)]

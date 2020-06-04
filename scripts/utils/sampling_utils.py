@@ -32,7 +32,7 @@ def Knn(X1, N, D, n_neighbors, forest_size, subdivide_variance_size, leaf_number
     import os
     try:
         t1 = time.time()
-        dllPath = os.path.join(SO_PATH, 'knnDll.dll')
+        dllPath = os.path.join(SO_PATH, "utils", 'knnDll.dll')
         C = ffi.dlopen(dllPath)
         cffi_X1 = ffi.cast('double*', X1.ctypes.data)
         neighbors_nn = np.zeros((N, n_neighbors), dtype=np.int32)
@@ -133,6 +133,7 @@ class DensityBasedSampler(object):
         # r = np.mean(self._kDist(data, knn + 1))
 
         # guang 9-6
+        # import IPython; IPython.embed(); exit()
         self.radius_of_k_neighbor = dist[:, -1]
         for i in range(len(self.radius_of_k_neighbor)):
             self.radius_of_k_neighbor[i] = math.sqrt(self.radius_of_k_neighbor[i])

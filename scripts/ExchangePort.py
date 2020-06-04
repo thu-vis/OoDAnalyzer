@@ -56,7 +56,7 @@ class ExchangePort(object):
     def get_idx(self):
         mat = {
             "train_idx": self.data.train_idx,
-            "valid_idx": self.data.valid_idx,
+            "valid_idx": [], # TODO
             "test_idx": self.data.test_idx
         }
         return mat
