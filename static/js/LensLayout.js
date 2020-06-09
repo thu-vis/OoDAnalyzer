@@ -21,7 +21,6 @@ var LensLayout = function(container) {
     that.DistributionLens = null;
     that.BoundaryLens = null;
     that.MultiFocusLens = null;
-    that.RecommendationLens = null;
     that.ConfidenceLens = null;
     that.EntropyLens = null;
     var lens = Array(NUM_OF_LENS).fill(null);
@@ -30,8 +29,6 @@ var LensLayout = function(container) {
     function zoomed(x, y, k) {
         that.DistributionLens.zoomed(x, y, k);
         that.BoundaryLens.zoomed(x, y, k);
-        // that.MultiFocusLens.zoomed(x, y, k);
-        // that.RecommendationLens.zoomed(x, y, k);
     }
 
     that.zoom = function(transform) {
@@ -49,7 +46,6 @@ var LensLayout = function(container) {
             // .style("padding-left", bbox.width * 0.01);
         lens[0] = that.DistributionLens = new DistributionLayout(svg, that);
         lens[1] = that.BoundaryLens = new Boundary(svg, that);
-        lens[2] = that.RecommendationLens = new Recommendation(svg, that);
         lens[3] = that.MultiFocusLens = new MultiFocus(svg, that);
         lens[4] = that.ConfidenceLens = new Confidence(svg, that);
         lens[5] = that.EntropyLens = new Entropy(svg, that);
@@ -64,7 +60,7 @@ var LensLayout = function(container) {
         svg.on("dblclick.zoom", null);
         lens_status[0] = 0;
         lens_status[1] = 1;
-        lens_status[2] = 2;
+        lens_status[2] = -1;
         lens_status[3] = 3;
         lens_status[4] = -1;
         lens_status[5] = 5;
@@ -234,10 +230,7 @@ var LensLayout = function(container) {
         that.DistributionLens.load_data(id, data, boundary_points);
         that.DistributionLens.draw();
     };
-    that.update_recommendation_lens = function() {
-        that.RecommendationLens.load_data();
-        that.RecommendationLens.draw();
-    };
+
     that.update_boundary_lens = function(data) {
         that.BoundaryLens.load_data(data);
         that.BoundaryLens.draw();
@@ -270,13 +263,7 @@ var LensLayout = function(container) {
             another.BoundaryLens.setVisible(lens_status[1] !== -1);
         }
     };
-    that.switch_recommendation_lens = function(visible) {
-        lens_status[2] = visible ? 2 : -1;
-        that.RecommendationLens.setVisible(visible);
-        if (another != null) {
-            another.RecommendationLens.setVisible(lens_status[2] !== -1);
-        }
-    };
+
     that.switch_images = function(visible) {
         console.log("switch images: ", visible);
         if (visible){
