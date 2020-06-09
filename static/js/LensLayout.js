@@ -20,7 +20,6 @@ var LensLayout = function(container) {
 
     that.DistributionLens = null;
     that.BoundaryLens = null;
-    that.MultiFocusLens = null;
     that.ConfidenceLens = null;
     that.EntropyLens = null;
     var lens = Array(NUM_OF_LENS).fill(null);
@@ -46,7 +45,6 @@ var LensLayout = function(container) {
             // .style("padding-left", bbox.width * 0.01);
         lens[0] = that.DistributionLens = new DistributionLayout(svg, that);
         lens[1] = that.BoundaryLens = new Boundary(svg, that);
-        lens[3] = that.MultiFocusLens = new MultiFocus(svg, that);
         lens[4] = that.ConfidenceLens = new Confidence(svg, that);
         lens[5] = that.EntropyLens = new Entropy(svg, that);
         // svg.call(d3.zoom().scaleExtent([1/2, 16]).on("zoom", () => {
@@ -61,7 +59,7 @@ var LensLayout = function(container) {
         lens_status[0] = 0;
         lens_status[1] = 1;
         lens_status[2] = -1;
-        lens_status[3] = 3;
+        lens_status[3] = -1;
         lens_status[4] = -1;
         lens_status[5] = 5;
 
@@ -153,8 +151,6 @@ var LensLayout = function(container) {
             );
             Loader.grid_data_node.set_on();
         }
-        // that.MultiFocusLens.clear_data();
-        // that.MultiFocusLens.draw();
     };
     that.get_data_type = function() {
         return datatype;
@@ -235,10 +231,7 @@ var LensLayout = function(container) {
         that.BoundaryLens.load_data(data);
         that.BoundaryLens.draw();
     };
-    that.update_multifocus_lens = function(data) {
-        that.MultiFocusLens.load_data(data);
-        that.MultiFocusLens.draw();
-    };
+
     that.update_entropy_lens = function() {
         if (lens_status[5] > -1) {
             that.EntropyLens.draw();

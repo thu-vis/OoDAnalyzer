@@ -91,14 +91,6 @@ var on_plot_clicked = function(d, i){
     InfoView.update_image(img_url);
 };
 
-var add_multifocus_lens = function(current_lens, data) {
-    current_lens.MultiFocusLens.add_data(data);
-    current_lens.MultiFocusLens.draw();
-};
-
-var remove_multifocus_lens = function(current_lens, data) {
-    current_lens.MultiFocusLens.remove_data(data);
-};
 
 var change_projection_method = function(embed_method){
     if (!embed_method){
