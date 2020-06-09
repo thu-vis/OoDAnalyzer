@@ -1,3 +1,6 @@
+/**
+ * Navigation tree.
+ */
 var NavigationTree = function(container) {
     var that = this;
     that.container = container;

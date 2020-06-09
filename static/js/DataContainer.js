@@ -1,5 +1,7 @@
 /**
  * Created by Changjian on 2018/12/17.
+ * 
+ * Definition of DataContainer, a data structure to store data needed for visualization
  */
 
 var DataCell = function(_id, _img_url_prefix, _thumbnail_url_prefix ,_data_type){

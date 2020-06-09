@@ -1,3 +1,6 @@
+/**
+ * A data structure that manage different views
+ */
 var LensLayout = function(container) {
     var that = this;
     that.container = container;

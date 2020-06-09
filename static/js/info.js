@@ -1,5 +1,7 @@
 /**
  * Created by Changjian on 2018/12/17.
+ * 
+ * Information panel
  */
 
 var InfoLayout = function(container) {

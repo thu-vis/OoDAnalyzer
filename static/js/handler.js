@@ -1,5 +1,7 @@
 /**
  * Created by Changjian on 2018/12/17.
+ * 
+ * Callback functions that need to be called after corresponding data has been loaded.
  */
 
 var manifest_handler = function(data){

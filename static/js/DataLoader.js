@@ -1,3 +1,8 @@
+/**
+ * Created by Changjian on 2018/12/17.
+ * 
+ * A data structure loading data from backend
+ */
 function DataLoader(dataset) {
 
     var that = this;
@@ -29,12 +34,8 @@ function DataLoader(dataset) {
         that.manifest_node = new request_node(ManifestApi + params, manifest_handler, "json", "GET");
         that.idx_node = new request_node(IdxApi + params, idx_handler, "json", "GET");
         that.idx_node.depend_on(that.manifest_node);
-        // that.feature_node = new request_node(FeatureApi + params, feature_handler, "json", "GET");
-        // that.feature_node.depend_on(that.idx_node);
         that.label_node = new request_node(LabelApi + params, label_handler, "json", "GET");
         that.label_node.depend_on(that.idx_node);
-        // that.sample_node = new request_node(SampleApi + params, sample_handler, "json", "GET");
-        // that.sample_node.depend_on(that.label_node);
         that.embed_data_node = new request_node(DataApi + params  + "&embed-method=tsne", embed_data_handler, "json", "GET");
         that.embed_data_node.depend_on(that.label_node);
         that.entropy_data_node = new request_node(EntropyApi + params, entropy_handler, "json", "GET");
@@ -45,14 +46,10 @@ function DataLoader(dataset) {
         that.grid_data_node = new request_node(GridLayoutApi + params + "&datatype=test&embed-method=tsne&left-x=0&top-y=0&width=1&height=1&distribution=test&node-id=-1", grid_handler, "json", "GET");
         that.grid_data_node.depend_on(that.entropy_data_node);
         that.grid_data_node.depend_on(that.prediction_data_node);
-        // that.grid_data_node.depend_on(that.confidence_data_node);
-        // that.grid_data_node.depend_on(that.sample_node);
-        // that.grid_data_node.set_off();
 
         that.focus_data_node = new request_node(FocusApi + params, data => focus_handler(LensView, data), "json", "GET");
         that.focus_data_node.depend_on(that.grid_data_node);
         that.focus_data_node.set_off();
-        // that.entropy_data_node.set_off();
     };
 
     that.init = function() {
