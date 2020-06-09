@@ -30,6 +30,8 @@ class Processor(object):
         train_idx = mat["train_idx"]
         test_idx = mat["test_idx"]
         all_idx = train_idx + test_idx
+        pickle_save_data(os.path.join(config.data_root, self.dataname, "all_idx.pkl"), all_idx)
+        exit()
         X = mat["X_name"]
         y = mat["y_name"].reshape(-1)
         embed_X = mat["embed_X"]

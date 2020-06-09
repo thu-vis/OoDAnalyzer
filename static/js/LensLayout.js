@@ -304,13 +304,13 @@ var LensLayout = function(container) {
     that.update_layout = function() {
     };
 
-    // Lens status Query
-    that.boundary_lens_isVisible = function() {
-        return lens_status[1] !== -1;
-    };
-    that.recommendation_lens_isVisible = function() {
-        return lens_status[2] !== -1;
-    };
+    // // Lens status Query
+    // that.boundary_lens_isVisible = function() {
+    //     return lens_status[1] !== -1;
+    // };
+    // that.recommendation_lens_isVisible = function() {
+    //     return lens_status[2] !== -1;
+    // };
 
     // Navigation
     that.save_status = function(id, grids, boundary, dis) {
