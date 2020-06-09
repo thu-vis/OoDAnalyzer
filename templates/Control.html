@@ -3,17 +3,6 @@
 
 <div class="self-column" id="self-column-1">
     <div class="block-container" id="block-1-1">
-        {#header#}
-{#        <div class="my-panel" @*style="display: none" *@>#}
-{#            <div>#}
-{#                <span class="my-panel-heading"> Control </span>#}
-{#                <!--<span class="save-button header-button" onclick="saveSVG('worker-svg')">Save</span>-->#}
-{#            </div>#}
-{#            <hr class="my-panel-seg"/>#}
-{#        </div>#}
-{#        <h5>Control Panel</h5>#}
-
-        {# navigation #}
         <div>
             <span class="first-class-title">DATA</span>
         </div>
@@ -29,7 +18,6 @@
                         <select id="dataset-select">
                           <option value="animals">Animals</option>
                           <option value="animals">Animals-leopard</option>
-{#                            <option value="rea">REA</option>#}
                           
                         </select>
                       </div>
@@ -75,16 +63,11 @@
 
                 <li>
                       <div class="collapsible-header">
-{#                          <i class="mdi-navigation-chevron-right"></i>#}
                           <span class="second-font">Encoding</span>
                       </div>
                       <div class="collapsible-body" id="Lens">
                           <p>
-{#                              <label style="float: left;">#}
-{#                                <input id="boundary-switch" type="checkbox" class="filled-in"#}
-{#                                       onclick="switch_boundary()"/>#}
-{#                                <span class="third-font">Decision boundary</span>#}
-{#                              </label>#}
+
                               <label {# style="padding-left: 10px" #}>
                                 <input id="images-switch" type="checkbox" class="filled-in" checked
                                        onclick="switch_images()"/>
@@ -116,9 +99,7 @@
                             <span class="third-font" style="float: left;">Superposition</span>
                             <div class="third-font icon-group">
                                 <img src="/static/img/superposition_icon.png" style="height:22px; margin-left: 6px">
-{#                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="margin-left: 2.5px">#}
-{#                                    <path d="M0 0h24v24H0z" fill="none"/><path d="M3 5H1v16c0 1.1.9 2 2 2h16v-2H3V5zm18-4H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 16H7V3h14v14z"/>#}
-{#                                </svg>#}
+
                             </div>
                           </label>
                           <label>
@@ -127,14 +108,7 @@
                             <span class="third-font" style="float: left; margin-left: 5%;">Juxtaposition</span>
                             <div class="third-font icon-group">
                                 <img src="/static/img/juxtaposition_icon.png" style="height:22px; margin-left: 6px">
-{#                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">#}
-{#                                    <path d="M0 0h24v24H0z" fill="none"/>#}
-{#                                    <path d="M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H6V6h12v12z"/>#}
-{#                                </svg>#}
-{#                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="margin-left: -10px">#}
-{#                                    <path d="M0 0h24v24H0z" fill="none"/>#}
-{#                                    <path d="M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H6V6h12v12z"/>#}
-{#                                </svg>#}
+
                             </div>
                           </label>
                       </div>
