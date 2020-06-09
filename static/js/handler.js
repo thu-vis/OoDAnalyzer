@@ -151,10 +151,7 @@ var grid_handler = function(data){
     d3.select("#preloader").style("display", "none");
 };
 
-// var boundary_handler = function(current_lens, data) {
-//     Loader.BoundaryData = data;
-//     current_lens.update_boundary_lens();
-// };
+
 
 var entropy_handler = function(data) {
     Loader.EntropyData = data;

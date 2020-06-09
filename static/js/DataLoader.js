@@ -20,7 +20,6 @@ function DataLoader(dataset) {
     that.TrainData = null;
     that.ValidData = null;
     that.TestData = null;
-    that.BoundaryData = null;
     that.EntropyData = null;
     that.PredictionData = null;
 
@@ -49,8 +48,6 @@ function DataLoader(dataset) {
         // that.grid_data_node.depend_on(that.confidence_data_node);
         // that.grid_data_node.depend_on(that.sample_node);
         // that.grid_data_node.set_off();
-        // that.boundary_data_node = new request_node(BoundaryApi + params + "&data-type=train", data => boundary_handler(LensView, data), "json", "GET");
-        // that.boundary_data_node.depend_on(that.grid_data_node);
 
         that.focus_data_node = new request_node(FocusApi + params, data => focus_handler(LensView, data), "json", "GET");
         that.focus_data_node.depend_on(that.grid_data_node);

@@ -19,14 +19,12 @@ var LensLayout = function(container) {
     var lens_status = Array(NUM_OF_LENS).fill(-1); // -1 for hidden, others represents z-index in lens
 
     that.DistributionLens = null;
-    that.BoundaryLens = null;
     that.EntropyLens = null;
     var lens = Array(NUM_OF_LENS).fill(null);
     // var mouse_pressed = false;
 
     function zoomed(x, y, k) {
         that.DistributionLens.zoomed(x, y, k);
-        that.BoundaryLens.zoomed(x, y, k);
     }
 
     that.zoom = function(transform) {
@@ -43,7 +41,6 @@ var LensLayout = function(container) {
             // .style("float", "left")
             // .style("padding-left", bbox.width * 0.01);
         lens[0] = that.DistributionLens = new DistributionLayout(svg, that);
-        lens[1] = that.BoundaryLens = new Boundary(svg, that);
         lens[5] = that.EntropyLens = new Entropy(svg, that);
         // svg.call(d3.zoom().scaleExtent([1/2, 16]).on("zoom", () => {
         //     const {x, y, k} = d3.event.transform;
@@ -55,7 +52,7 @@ var LensLayout = function(container) {
         // }));
         svg.on("dblclick.zoom", null);
         lens_status[0] = 0;
-        lens_status[1] = 1;
+        lens_status[1] = -1;
         lens_status[2] = -1;
         lens_status[3] = -1;
         lens_status[4] = -1;
@@ -222,10 +219,6 @@ var LensLayout = function(container) {
         that.DistributionLens.draw();
     };
 
-    that.update_boundary_lens = function(data) {
-        that.BoundaryLens.load_data(data);
-        that.BoundaryLens.draw();
-    };
 
     that.update_entropy_lens = function() {
         if (lens_status[5] > -1) {
@@ -235,13 +228,7 @@ var LensLayout = function(container) {
         }
     };
 
-    that.switch_boundary_lens = function (visible) {
-        lens_status[1] = visible ? 1 : -1;
-        that.BoundaryLens.setVisible(visible);
-        if (another != null) {
-            another.BoundaryLens.setVisible(lens_status[1] !== -1);
-        }
-    };
+
 
     that.switch_images = function(visible) {
         console.log("switch images: ", visible);
