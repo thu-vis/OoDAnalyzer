@@ -171,7 +171,7 @@ class ExchangePort(object):
         return mat
 
     def get_focus(self, id, k):
-        focus_instance_list = self.ensemble.get_similar(id, k)
+        focus_instance_list = self.data.get_similar(id, k)
         mat = {
             "similar_instances": focus_instance_list
         }
@@ -183,7 +183,7 @@ class ExchangePort(object):
         return os.path.join(saliency_map_dir, str(id) + ".jpg")
 
     def get_individual_info(self, id):
-        ent = self.ensemble.all_entropy[id]
+        ent = self.data.entropy[id]
         gt = float(self.data.y[id])
         print(ent, gt)
         info = {

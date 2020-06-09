@@ -210,14 +210,10 @@ var LensLayout = function(container) {
         if(_len_name === "scatter-plot"){
             lens_status[0] = -1;
             lens_status[6] = 6;
-            // d3.select("#snapshot-or-return").style("display", "none");
         }
         else if(_len_name === "grid-layout"){
             lens_status[0] = 0;
             lens_status[6] = -1;
-            // if (datatype !== "all") {
-            //     d3.select("#snapshot-or-return").style("display", "block");
-            // }
         }
         else{
             console.log("unsupported len type");
@@ -318,8 +314,8 @@ var LensLayout = function(container) {
         snapshot.layout_size = that.DistributionLens.get_plot_size();
         snapshot.display_data = datacells;
         snapshot.boundary_data = that.BoundaryLens.get_boundary_data();
-        SnapshotView.load_data(snapshot);
-        SnapshotView.draw();
+        // SnapshotView.load_data(snapshot);
+        // SnapshotView.draw();
     };
     that.load_snapshot = function(snapshot) {
         datatype = snapshot.datatype;

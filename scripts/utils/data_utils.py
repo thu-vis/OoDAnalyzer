@@ -154,6 +154,14 @@ class Data(object):
         }
         return manifest
 
+    def get_similar(self, id, k):
+        all_idx = self.train_idx + self.test_idx
+        all_feature = self.X
+        center_feature = self.X[id]
+        distances = [np.sum(np.square(center_feature - all_feature[idx])) for idx in all_idx]
+        index = [all_idx[i] for i in sorted(range(len(all_idx)), key=distances.__getitem__)[:k]]
+        return index
+
     def _OoD_norm_by_confidence(self):
         conf_threshold = 0.95
         test_ent = self.entropy[np.array(self.test_idx)]

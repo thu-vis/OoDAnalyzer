@@ -25,7 +25,6 @@ var set_up = function(dataset){
     LensView = new LensLayout(d3.select("#block-2-1"));
     NavigationView = new NavigationTree(d3.select("#block-1-2"));
     LensView.set_navigation(NavigationView);
-    // SnapshotView = new Snapshot(d3.select("#block-3-2"));
 };
 
 var remove_dom = function(){
