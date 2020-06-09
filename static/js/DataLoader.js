@@ -23,7 +23,6 @@ function DataLoader(dataset) {
     that.BoundaryData = null;
     that.EntropyData = null;
     that.PredictionData = null;
-    that.ConfidenceData = null;
 
     // Define topological structure of data retrieval
     that._init = function() {
@@ -43,8 +42,6 @@ function DataLoader(dataset) {
         that.entropy_data_node.depend_on(that.embed_data_node);
         that.prediction_data_node = new request_node(PredictionApi + params, prediction_handler, "json", "GET");
         that.prediction_data_node.depend_on(that.embed_data_node);
-        // that.confidence_data_node = new request_node(ConfidenceApi + params, confidence_handler, "json", "GET");
-        // that.confidence_data_node.depend_on(that.embed_data_node);
         // default datatype = test
         that.grid_data_node = new request_node(GridLayoutApi + params + "&datatype=test&embed-method=tsne&left-x=0&top-y=0&width=1&height=1&distribution=test&node-id=-1", grid_handler, "json", "GET");
         that.grid_data_node.depend_on(that.entropy_data_node);

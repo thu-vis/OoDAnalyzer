@@ -20,7 +20,6 @@ var LensLayout = function(container) {
 
     that.DistributionLens = null;
     that.BoundaryLens = null;
-    that.ConfidenceLens = null;
     that.EntropyLens = null;
     var lens = Array(NUM_OF_LENS).fill(null);
     // var mouse_pressed = false;
@@ -45,7 +44,6 @@ var LensLayout = function(container) {
             // .style("padding-left", bbox.width * 0.01);
         lens[0] = that.DistributionLens = new DistributionLayout(svg, that);
         lens[1] = that.BoundaryLens = new Boundary(svg, that);
-        lens[4] = that.ConfidenceLens = new Confidence(svg, that);
         lens[5] = that.EntropyLens = new Entropy(svg, that);
         // svg.call(d3.zoom().scaleExtent([1/2, 16]).on("zoom", () => {
         //     const {x, y, k} = d3.event.transform;
@@ -127,10 +125,7 @@ var LensLayout = function(container) {
         that.EntropyLens.update_threshold(value);
         that.update_entropy_lens();
     };
-    that.update_confidence_threshold = function(value){
-        that.ConfidenceLens.update_threshold(value);
-        that.update_confidence_lens();
-    };
+
 
     that.refresh = function() {
         var nav_status = that.nav.switch_datatype(datatype);
@@ -239,16 +234,7 @@ var LensLayout = function(container) {
             that.EntropyLens.remove();
         }
     };
-    that.update_confidence_lens = function() {
-        var confidence_slider = d3.select("#confidence-slider");
-        if (lens_status[4] > -1) {
-            confidence_slider.style("display", "block");
-            that.ConfidenceLens.draw();
-        } else {
-            confidence_slider.style("display", "none");
-            // that.ConfidenceLens.remove();
-        }
-    };
+
     that.switch_boundary_lens = function (visible) {
         lens_status[1] = visible ? 1 : -1;
         that.BoundaryLens.setVisible(visible);

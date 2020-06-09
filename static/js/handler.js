@@ -183,21 +183,6 @@ var prediction_handler = function(data){
     }
 };
 
-var confidence_handler = function(data) {
-    Loader.ConfidenceData = data;
-    var confidence_list = [data.train_confidence, data.test_confidence];
-    var data_variables_list = [Loader.TrainData, Loader.TestData];
-    for( var i = 0; i < confidence_list.length; i++ ){
-        var variable = data_variables_list[i];
-        var confidence_data = confidence_list[i];
-        for( var j = 0; j < confidence_data.length; j++){
-            // variable.get_cell(j).set_confidence(Math.max.apply(null, confidence_data[j]));
-            // modified by changjian
-            variable.get_cell(j).set_confidence(confidence_data[j]);
-        }
-
-    }
-};
 
 var focus_handler = function(current_lens, data) {
     let infos = data.info;

@@ -21,7 +21,6 @@ var GridLayoutApi = "/api/grid-layout";
 var BoundaryApi = "/api/decision-boundary";
 var EntropyApi = "/api/entropy";
 var PredictionApi = "/api/prediction";
-var ConfidenceApi = "/api/confidence";
 var FocusApi = "/api/focus/";
 
 /*
