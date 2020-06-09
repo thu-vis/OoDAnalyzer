@@ -24,7 +24,6 @@ var LensLayout = function(container) {
     that.RecommendationLens = null;
     that.ConfidenceLens = null;
     that.EntropyLens = null;
-    that.ScatterPlot = null;
     var lens = Array(NUM_OF_LENS).fill(null);
     // var mouse_pressed = false;
 
@@ -54,7 +53,6 @@ var LensLayout = function(container) {
         lens[3] = that.MultiFocusLens = new MultiFocus(svg, that);
         lens[4] = that.ConfidenceLens = new Confidence(svg, that);
         lens[5] = that.EntropyLens = new Entropy(svg, that);
-        lens[6] = that.ScatterPlot = new ScatterPlot(svg, that);
         // svg.call(d3.zoom().scaleExtent([1/2, 16]).on("zoom", () => {
         //     const {x, y, k} = d3.event.transform;
         //     zoomed(x, y, k);
@@ -70,7 +68,6 @@ var LensLayout = function(container) {
         lens_status[3] = 3;
         lens_status[4] = -1;
         lens_status[5] = 5;
-        lens_status[6] = -1;
 
     };
     that.set_navigation = function(nav) {
@@ -209,11 +206,9 @@ var LensLayout = function(container) {
     that.switch_lens = function(_len_name){
         if(_len_name === "scatter-plot"){
             lens_status[0] = -1;
-            lens_status[6] = 6;
         }
         else if(_len_name === "grid-layout"){
             lens_status[0] = 0;
-            lens_status[6] = -1;
         }
         else{
             console.log("unsupported len type");
@@ -295,36 +290,8 @@ var LensLayout = function(container) {
         lens_status[5] = visible ? 5 : -1;
         that.update_entropy_lens();
     };
-    that.show_scatter_plot = function() {
-        that.ScatterPlot.display();
-    };
-    that.close_scatter_plot = function() {
-        that.ScatterPlot.hide();
-    };
-    that.update_scatter_plot = function() {
-        that.ScatterPlot.update_state();
-    };
 
-    // side-by-side
-    that.save_snapshot = function() {
-        var snapshot = Object();
-        snapshot.datatype = datatype;
-        snapshot.focus = that.MultiFocusLens.get_current_focus(datatype);
-        snapshot.sampling_area = that.DistributionLens.get_sampling_area();
-        snapshot.layout_size = that.DistributionLens.get_plot_size();
-        snapshot.display_data = datacells;
-        snapshot.boundary_data = that.BoundaryLens.get_boundary_data();
-    };
-    that.load_snapshot = function(snapshot) {
-        datatype = snapshot.datatype;
-        $("#train").prop("checked", false);
-        $("#test").prop("checked", false);
-        $("#" + LensView.get_data_type()).prop("checked", true);
-        that.close_scatter_plot();
-        that.update_grid(snapshot.display_data, snapshot.boundary_data);
-        that.DistributionLens.set_sampling_area(snapshot.sampling_area);
-        that.update_multifocus_lens(snapshot.focus);
-    };
+
     that.resize = function() {
         layout_width = bbox.width * 0.5;
         layout_height = bbox.height - 28;
@@ -347,7 +314,6 @@ var LensLayout = function(container) {
         that.switch_datatype("train");
         another.switch_datatype("test");
         // another.sync_status();
-        // another.load_snapshot(snapshot);
         // Re-Layout
         that.resize();
         another.resize();
@@ -435,11 +401,6 @@ var LensLayout = function(container) {
         that.update_entropy_lens();
     };
     that.update_layout = function() {
-        if (lens_status[0] !== -1) {
-            that.close_scatter_plot();
-        } else if (lens_status[6] !== -1) {
-            that.show_scatter_plot();
-        }
     };
 
     // Lens status Query
@@ -462,7 +423,6 @@ var LensLayout = function(container) {
         that.nav.draw();
     };
     that.load_status = function(id, status) {
-        // that.close_scatter_plot();
         that.update_grid(status.id, status.display_data, status.boundary_data);
         that.DistributionLens.set_sampling_area(status.sampling_area);
     };
