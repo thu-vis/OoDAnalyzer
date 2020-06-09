@@ -1,5 +1,7 @@
 /**
  * Created by Changjian on 2018/12/17.
+ * 
+ * This file contains definition of global variables.
  */
 
 
@@ -70,29 +72,13 @@ var CategoryColor = [
     "#8c564b"
 ];
 
-// 蓝色
-    // ["#deebf7",
-    // "#60a9ce",
-    // "#225982"],
 
-// 橙色
-//     ["#fef2e6",
-//     "#fd9036",
-//     "#f36c29"]
-
-    // ["#dfefff",
-    // "#4fa7ff",
-    // "#0063c6"], //蓝色
-    //
-    // ["#ffe5cc",
-    // "#ffa953",
-    // "#cc6600"], // 橙色； shixia
 
 
 var CategorySequentialColor = [
     ["#c8e3ff",
     "#4fa7ff",
-    "#0063c6"], //蓝色
+    "#0063c6"], //blue
 
     ["#ffe5cc",
     "#ffa953",
