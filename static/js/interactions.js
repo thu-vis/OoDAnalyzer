@@ -141,33 +141,8 @@ var display_selection = function(display_type){
     }
 };
 
-var lens_selection = function(){
-    var name = document.getElementsByName("group-lens");
-    var selection = null;
-    for (var i = 0; i < name.length; i++){
-        if (name[i].checked){
-            selection = name[i].id;
-            break;
-        }
-    }
-    console.log("present lens selection: ", selection);
-    LensView.switch_lens(selection);
-    // writing the triggered function here
-};
 
-var filter_selection = function(){
-    var name = document.getElementsByName("group-filter");
-    var selection = null;
-    for (var i = 0; i < name.length; i++){
-        if (name[i].checked){
-            selection = name[i].id;
-            break;
-        }
-    }
-    console.log("present filter selection: ", selection);
-    LensView.switch_filter(selection);
-    // writing the triggered function here
-};
+
 
 var position_selection = function(){
     var name = document.getElementsByName("group-position");
@@ -218,19 +193,10 @@ var entropy_threshold_update = function(values, handle, unencoded, tap, position
     LensView.update_entropy_threshold(unencoded);
 };
 
-var confidence_threshold_update = function(values, handle, unencoded, tap, positions){
-    console.log(values, handle, unencoded, tap, positions);
-    var value = unencoded[0];
-    LensView.update_confidence_threshold(value);
-};
 
-var compare_snapshot = function(snapshot) {
-    LensView.compare(snapshot);
-};
-
-var withdraw_from_compare = function() {
-    LensView.remove_compare();
-};
+// var withdraw_from_compare = function() {
+//     LensView.remove_compare();
+// };
 
 var set_cropping = function() {
     LensView.set_mode("cropping");

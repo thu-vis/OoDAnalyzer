@@ -12,7 +12,6 @@ var LensLayout = function(container) {
     var datacells = Array();
 
     var svg = that.container.append("svg");
-    var another = null;
     that.nav = null;
 
     const NUM_OF_LENS = 10;
@@ -38,18 +37,9 @@ var LensLayout = function(container) {
         svg.attr("width", layout_width)
             .attr("height", layout_height)
             .attr("id", "lens-svg");
-            // .style("float", "left")
-            // .style("padding-left", bbox.width * 0.01);
         lens[0] = that.DistributionLens = new DistributionLayout(svg, that);
         lens[5] = that.EntropyLens = new Entropy(svg, that);
-        // svg.call(d3.zoom().scaleExtent([1/2, 16]).on("zoom", () => {
-        //     const {x, y, k} = d3.event.transform;
-        //     zoomed(x, y, k);
-        //     if (another != null) {
-        //         another.zoom(d3.event.transform);
-        //     }
-        //     // that.set_viewbox(d3.event.transform);
-        // }));
+
         svg.on("dblclick.zoom", null);
         lens_status[0] = 0;
         lens_status[1] = -1;
@@ -150,28 +140,6 @@ var LensLayout = function(container) {
 
     // Interactions
     that.switch_datatype = function(_datatype) {
-        // if (_datatype !== "juxtaposition") {
-        //     if (display_type !== "juxtaposition") {
-        //         if (datatype === _datatype) {
-        //             return;
-        //         } else {
-        //             datatype = _datatype;
-        //             that.refresh();
-        //         }
-        //     } else {
-        //          that.remove_compare();
-        //          datatype = _datatype;
-        //          that.refresh();
-        //     }
-        //     if (_datatype === "all") {
-        //         display_type = "superposition";
-        //     } else {
-        //         display_type = "single";
-        //     }
-        // } else {
-        //     that.compare();
-        //     display_type = "juxtaposition";
-        // }
         if (_datatype === "juxtaposition") {
             that.juxtaposition();
         } else {
@@ -186,32 +154,6 @@ var LensLayout = function(container) {
                 that.refresh();
             }
         }
-    };
-    that.switch_lens = function(_len_name){
-        if(_len_name === "scatter-plot"){
-            lens_status[0] = -1;
-        }
-        else if(_len_name === "grid-layout"){
-            lens_status[0] = 0;
-        }
-        else{
-            console.log("unsupported len type");
-        }
-
-        that.update_layout();
-    };
-    that.switch_filter = function(_filter) {
-        if (_filter === "none-filter") {
-            lens_status[4] = -1;
-            lens_status[5] = -1;
-        } else if (_filter === "entropy-filter") {
-            lens_status[4] = -1;
-            lens_status[5] = 5;
-        } else if (_filter === "confidence-filter") {
-            lens_status[4] = 4;
-            lens_status[5] = -1;
-        }
-        that.update_filter();
     };
 
     that.update_distribution_lens = function(id, data, boundary_points) {
@@ -253,74 +195,77 @@ var LensLayout = function(container) {
         zoomed(0, layout_height / 4, 0.75);
         const transform = d3.zoomTransform(0).translate(0, 255).scale(0.75);
         d3.zoom().transform(svg, transform);
-        d3.select("#snapshot-or-return")
-            .on('click', function() {
-                withdraw_from_compare();
-            })
-            .select("i")
-            .html("keyboard_backspace");
+        // d3.select("#snapshot-or-return")
+        //     .on('click', function() {
+        //         withdraw_from_compare();
+        //     })
+        //     .select("i")
+        //     .html("keyboard_backspace");
     };
-    that.compare = function(snapshot) {
-        another = new LensLayout(that.container);
-        another.set_another(that);
-        NavigationView.split(another);
-        that.switch_datatype("train");
-        another.switch_datatype("test");
-        // another.sync_status();
-        // Re-Layout
-        that.resize();
-        another.resize();
-    };
-    that.remove_compare = function() {
-        another.destroy();
-        another = null;
-        NavigationView.merge();
-        layout_width = bbox.width;
-        layout_height = bbox.height - 28;
-        svg.attr("width", layout_width)
-            .attr("height", layout_height);
-        zoomed(0, 0, 1);
-        const transform = d3.zoomTransform(0).translate(0, 0).scale(1);
-        d3.zoom().transform(svg, transform);
-    };
-    that.get_another = function() {
-        return another;
-    };
-    that.set_another = function(_another) {
-        another = _another;
-    };
-    that.tips_in_another = function(f, tip_type) {
-        var dist = function(x, y) {
-            var len = x.length;
-            var sum = 0;
-            for (var i = 0; i < len; ++i) {
-                sum += (x[i] - y[i])**2;
-            }
-            return Math.sqrt(sum);
-        };
+    // that.compare = function(snapshot) {
+    //     another = new LensLayout(that.container);
+    //     another.set_another(that);
+    //     NavigationView.split(another);
+    //     that.switch_datatype("train");
+    //     another.switch_datatype("test");
+    //     // another.sync_status();
+    //     // Re-Layout
+    //     that.resize();
+    //     another.resize();
+    // };
 
-        if (!another) {
-            return;
-        } else {
-            var distances = another.get_data().map(d => Object({
-                dist: dist(d.get_feature(), f),
-                id: d.get_id()
-            }));
-            // var pos = distances.indexOf(Math.min(...distances));
-            // var id = another.get_data()[pos].get_id();
-            distances.sort((x, y) => x.dist - y.dist);
-            var k = Math.min(8, distances.length);
-            if (tip_type) {
-                for (let i = 0; i < k; ++i) {
-                    another.highlight_grid(distances[i].id);
-                }
-            } else {
-                for (let i = 0; i < k; ++i) {
-                    another.dehighlight_grid(distances[i].id);
-                }
-            }
-        }
-    };
+    // that.remove_compare = function() {
+    //     another.destroy();
+    //     another = null;
+    //     NavigationView.merge();
+    //     layout_width = bbox.width;
+    //     layout_height = bbox.height - 28;
+    //     svg.attr("width", layout_width)
+    //         .attr("height", layout_height);
+    //     zoomed(0, 0, 1);
+    //     const transform = d3.zoomTransform(0).translate(0, 0).scale(1);
+    //     d3.zoom().transform(svg, transform);
+    // };
+
+    // that.get_another = function() {
+    //     return another;
+    // };
+    // that.set_another = function(_another) {
+    //     another = _another;
+    // };
+
+    // that.tips_in_another = function(f, tip_type) {
+    //     var dist = function(x, y) {
+    //         var len = x.length;
+    //         var sum = 0;
+    //         for (var i = 0; i < len; ++i) {
+    //             sum += (x[i] - y[i])**2;
+    //         }
+    //         return Math.sqrt(sum);
+    //     };
+
+    //     if (!another) {
+    //         return;
+    //     } else {
+    //         var distances = another.get_data().map(d => Object({
+    //             dist: dist(d.get_feature(), f),
+    //             id: d.get_id()
+    //         }));
+    //         // var pos = distances.indexOf(Math.min(...distances));
+    //         // var id = another.get_data()[pos].get_id();
+    //         distances.sort((x, y) => x.dist - y.dist);
+    //         var k = Math.min(8, distances.length);
+    //         if (tip_type) {
+    //             for (let i = 0; i < k; ++i) {
+    //                 another.highlight_grid(distances[i].id);
+    //             }
+    //         } else {
+    //             for (let i = 0; i < k; ++i) {
+    //                 another.dehighlight_grid(distances[i].id);
+    //             }
+    //         }
+    //     }
+    // };
 
     that.highlight_grid = function(id) {
         svg.select("#ID-" + id).select("rect")
@@ -334,9 +279,9 @@ var LensLayout = function(container) {
     that.get_lens_status = function() {
         return lens_status;
     };
-    that.sync_status = function() {
-        lens_status = another.get_lens_status();
-    };
+    // that.sync_status = function() {
+    //     lens_status = another.get_lens_status();
+    // };
     that.update_grid = function(id, grids, boundary, dis) {
         datacells = grids;
         that.update_distribution_lens(id, datacells, boundary);
