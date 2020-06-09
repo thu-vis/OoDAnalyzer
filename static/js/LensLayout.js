@@ -1,5 +1,5 @@
 /**
- * A data structure that manage different views
+ * A data structure that manage the DistributionLens and EntropyLens
  */
 var LensLayout = function(container) {
     var that = this;
