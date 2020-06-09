@@ -314,8 +314,6 @@ var LensLayout = function(container) {
         snapshot.layout_size = that.DistributionLens.get_plot_size();
         snapshot.display_data = datacells;
         snapshot.boundary_data = that.BoundaryLens.get_boundary_data();
-        // SnapshotView.load_data(snapshot);
-        // SnapshotView.draw();
     };
     that.load_snapshot = function(snapshot) {
         datatype = snapshot.datatype;

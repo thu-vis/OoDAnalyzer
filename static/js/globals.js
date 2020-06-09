@@ -31,7 +31,6 @@ var ControlView = null;
 var DisView = null;
 var InfoView = null;
 var LensView = null;
-var SnapshotView = null;
 var NavigationView = null;
 
 /*
