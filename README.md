@@ -25,7 +25,7 @@ Usage Example
 -----
 Step 1: create a folder `data/` in the root folder.
 
-Step 2: Download demo data from [here](https://pan.baidu.com/s/1kFXlgW3pogn2NfSkw2Vyrw) (password: 7nen), and unpack it in the folder `data/`.
+Step 2: download demo data from [here](https://pan.baidu.com/s/1kFXlgW3pogn2NfSkw2Vyrw) (password: 7nen), and unpack it in the folder `data/`.
 
 Step 3: setup the system:
 ```
