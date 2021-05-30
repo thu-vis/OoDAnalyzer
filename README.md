@@ -38,13 +38,14 @@ Step 4: visit http://localhost:8183/ with a browser.
 ## Citation
 If you use this code for your research, please consider citing:
 ```
-@article{chen2020oodanalyzer,
-    title = {{OoDAnalyzer}: Interactive Analysis of
-Out-of-Distribution Samples},
-    author = {Chen, Changjian and Yuan, Jun and Lu, Yafeng and Liu, Yang and Yuan, Songtao and Liu, Shixia},
-    journal = {IEEE Transactions on Visualization and Computer Graphics (accepted)},
-    year = {2020}
-}
+@article{chen2021oodanalyzer,
+  author={Chen, Changjian and Yuan, Jun and Lu, Yafeng and Liu, Yang and Su, Hang and Yuan, Songtao and Liu, Shixia},
+  journal={IEEE Transactions on Visualization and Computer Graphics}, 
+  title={{OoDAnalyzer}: Interactive Analysis of Out-of-Distribution Samples}, 
+  year={2021},
+  volume={27},
+  number={7},
+  pages={3335-3349}}
 ```
 
 ## Contact
