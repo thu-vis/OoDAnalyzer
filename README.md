@@ -1,8 +1,7 @@
 OoDAnalyzer
 ==================================================================
 
-Codes for the interactive analysis system, OoDAnalyzer, described in our paper ["OoDAnalyzer: Interactive Analysis of
-Out-of-Distribution Samples"](https://ieeexplore.ieee.org/document/8994105) (TVCG 2020).
+Codes for the interactive analysis system, OoDAnalyzer, described in our paper ["OoDAnalyzer: Interactive Analysis of Out-of-Distribution Samples"](https://ieeexplore.ieee.org/document/8994105) (TVCG 2020).
 
 Online demo: http://visgroup.thss.tsinghua.edu.cn:8183/
 
