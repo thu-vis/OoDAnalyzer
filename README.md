@@ -24,7 +24,7 @@ Usage Example
 -----
 Step 1: create a folder `data/` in the root folder.
 
-Step 2: download demo data from [here](https://pan.baidu.com/s/1kFXlgW3pogn2NfSkw2Vyrw) (password: 7nen), and unpack it in the folder `data/`.
+Step 2: download demo data from Baiduyun(Link: [here](https://pan.baidu.com/s/1kFXlgW3pogn2NfSkw2Vyrw), password: 7nen) or Google Drive (Link: [here](https://drive.google.com/file/d/1-QP8DVa5dwOXgFVejassJUlRzYLK5v7o/view?usp=sharing), no password), and unpack it in the folder `data/`.
 
 Step 3: setup the system:
 ```
