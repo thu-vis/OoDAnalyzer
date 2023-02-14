@@ -110,7 +110,6 @@ class DensityBasedSampler(object):
     def _fit_sample(self, data: np.ndarray, label=None, selection=None, entropy=None, confidence=None):
         if selection is not None and selection.sum() >= self.n_samples:
             return selection
-        # self.tree = BallTree(data, leaf_size=2)
         knn = 50
 
         # guang 8-30
@@ -118,8 +117,12 @@ class DensityBasedSampler(object):
         N, D = X.shape
         if knn + 1 > N:
             knn = int((N - 1) / 2)
-        # dist, neighbor = self.tree.query(X, k=knn + 1, return_distance=True)
-        neighbor, dist = Knn(X, N, D, knn + 1, 1, 1, int(N))
+
+        try:
+            neighbor, dist = Knn(X, N, D, knn + 1, 1, 1, int(N))
+        except:
+            self.tree = BallTree(data, leaf_size=2)
+            dist, neighbor = self.tree.query(X, k=knn + 1, return_distance=True)
         # ==================== shouxing 9-15
 
         # r = math.sqrt(np.mean(dist[:, -1]))    # 之前的距离没有开方，所以密度采样的计算有误
