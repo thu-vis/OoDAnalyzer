@@ -30,26 +30,26 @@ def Knn(X1, N, D, n_neighbors, forest_size, subdivide_variance_size, leaf_number
     		int subdivide_variance_size, int leaf_number);
          """)
     import os
-    try:
-        t1 = time.time()
-        dllPath = os.path.join(SO_PATH, "utils", 'knnDll.dll')
-        C = ffi.dlopen(dllPath)
-        cffi_X1 = ffi.cast('double*', X1.ctypes.data)
-        neighbors_nn = np.zeros((N, n_neighbors), dtype=np.int32)
-        distances_nn = np.zeros((N, n_neighbors), dtype=np.float64)
-        cffi_neighbors_nn = ffi.cast('int*', neighbors_nn.ctypes.data)
-        cffi_distances_nn = ffi.cast('double*', distances_nn.ctypes.data)
-        t = FuncThread(C.knn, cffi_X1, N, D, n_neighbors, cffi_neighbors_nn, cffi_distances_nn, forest_size, subdivide_variance_size, leaf_number)
-        t.daemon = True
-        t.start()
-        while t.is_alive():
-            t.join(timeout=1.0)
-            sys.stdout.flush()
-        print("knn runtime = %f"%(time.time() - t1))
-        return neighbors_nn, distances_nn
-    except Exception as ex:
-        print(ex)
-    return [[], []]
+    # try:
+    t1 = time.time()
+    dllPath = os.path.join(SO_PATH, "utils", 'knnDll.dll')
+    C = ffi.dlopen(dllPath)
+    cffi_X1 = ffi.cast('double*', X1.ctypes.data)
+    neighbors_nn = np.zeros((N, n_neighbors), dtype=np.int32)
+    distances_nn = np.zeros((N, n_neighbors), dtype=np.float64)
+    cffi_neighbors_nn = ffi.cast('int*', neighbors_nn.ctypes.data)
+    cffi_distances_nn = ffi.cast('double*', distances_nn.ctypes.data)
+    t = FuncThread(C.knn, cffi_X1, N, D, n_neighbors, cffi_neighbors_nn, cffi_distances_nn, forest_size, subdivide_variance_size, leaf_number)
+    t.daemon = True
+    t.start()
+    while t.is_alive():
+        t.join(timeout=1.0)
+        sys.stdout.flush()
+    print("knn runtime = %f"%(time.time() - t1))
+    return neighbors_nn, distances_nn
+    # except Exception as ex:
+    #     print(ex)
+    # return [[], []]
 
 
 class DensityBasedSampler(object):
@@ -121,6 +121,7 @@ class DensityBasedSampler(object):
         try:
             neighbor, dist = Knn(X, N, D, knn + 1, 1, 1, int(N))
         except:
+            print("using balltree")
             self.tree = BallTree(data, leaf_size=2)
             dist, neighbor = self.tree.query(X, k=knn + 1, return_distance=True)
         # ==================== shouxing 9-15
